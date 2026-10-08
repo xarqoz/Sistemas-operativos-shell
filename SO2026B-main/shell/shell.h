@@ -58,7 +58,7 @@
  */
 typedef struct {
     const char *name;        /* Nombre textual del comando que el usuario escribe (e.g., 'd_create') */
-    const char *category;    /* Categoría de ordenación: "datos", "memoria", "monitoreo", "utilidades" */
+    const char *category;    /* Categoría de ordenación: "datos", "memoria", "monitoreo", "utilidades", "editor" */
     const char *usage;       /* Sintaxis de uso del comando para mostrar en caso de error */
     const char *description; /* Explicación en español de lo que hace el comando a nivel lógico */
     const char *syscalls;    /* Explicación de las syscalls involucradas que se mostrarán en la ayuda */
@@ -92,5 +92,12 @@ int cmd_saludar(int argc, char **argv);   /* Syscalls: getuid */
 int cmd_despedir(int argc, char **argv);  /* Syscalls: getuid */
 int cmd_hora(int argc, char **argv);      /* Syscalls: time */
 int cmd_fecha(int argc, char **argv);     /* Syscalls: time */
+
+/* --- Categoría: Editor de Texto CLI (cat_editor.c) --- */
+/* Comando interactivo que arranca un sub-REPL de edición de texto.
+ * Subcomandos (acumulativos, equipo de 4): o, p, a, d, q (base);
+ * i, s (equipo 2); m, y, x (equipo 3); u, r (equipo 4).
+ * Syscalls: open, read, write, lseek, ftruncate, close, fstat, unlink */
+int cmd_editor(int argc, char **argv);
 
 #endif /* SHELL_H */
